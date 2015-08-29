@@ -44,7 +44,7 @@ angular.module('carpools').controller('CarpoolsController',[
 		};
 
 		$scope.canShowDrive = function() {
-			return this.placeSearch.location !== undefined;
+			return this.placeSearch !== undefined && this.placeSearch.location !== undefined;
 		};
 
 		$scope.drive = function () {

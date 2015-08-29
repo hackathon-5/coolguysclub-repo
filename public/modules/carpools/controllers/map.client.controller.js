@@ -9,7 +9,7 @@ angular.module('carpools').controller('MapsController',[
         $scope.initMap = function() {
             $scope.latitutde = 32.8678379;
             $scope.longitude = -79.9149789;
-            $scope.zoom = 12;
+            $scope.zoom = 11;
 
             $scope.location = new google.maps.LatLng(
                 $scope.latitutde,

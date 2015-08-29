@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/parcool-dev',
+	db: process.env.MONGOLAB_URI || 'mongodb://localhost/parcool-dev',
 	app: {
 		title: 'parcool - Development Environment'
 	},

@@ -1,6 +1,6 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="init()">
     <div class="row">
-        <div class="col-xs-11 text-center page-view">
+        <div class="col-xs-offset-2 col-xs-8 text-center page-view">
             <div class="btn-group btn-group-xs">
                 <button type="button" class="btn btn-default"
                         ng-click="pageView = 'LIST'">list</button>
@@ -8,7 +8,7 @@
                         ng-click="pageView = 'MAP'">map</button>
             </div>
         </div>
-        <div class="col-xs-1 drive-button">
+        <div class="col-sm-offset-1 col-sm-1 col-xs-2 drive-button">
             <button type="button" class="btn btn-primary"
                     ng-if="canShowDrive()"
                     ng-click="drive()">Drive</button>

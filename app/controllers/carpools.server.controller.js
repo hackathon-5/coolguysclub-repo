@@ -43,8 +43,6 @@ exports.update = function(req, res) {
 	carpool = _.extend(carpool , req.body);
 	carpool.populate('riders');
 
-	console.log(carpool);
-
 	carpool.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -58,8 +56,6 @@ exports.update = function(req, res) {
 
 exports.joinRide = function(req, res) {
 	var carpool = req.carpool;
-
-
 };
 
 

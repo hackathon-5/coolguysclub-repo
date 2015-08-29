@@ -25,12 +25,14 @@ angular.module('carpools').controller('CarpoolsController',[
 
 				$scope.$apply(function() {
 					$scope.placeSearch = {
-						name: place.name,
-						location: {
+						name: place.name
+					};
+					if(place.geometry && place.geometry.location) {
+						$scope.placeSearch.location =  {
 							lat: place.geometry.location.G,
 							lng: place.geometry.location.K
 						}
-					};
+					}
 				});
 			});
 		};
@@ -211,6 +213,7 @@ angular.module('carpools').controller('CarpoolsController',[
 				}
 
 				$scope.carpool = carpool;
+
 				$scope.updateNotification();
 
 				window.setInterval(function() {
@@ -230,13 +233,14 @@ angular.module('carpools').controller('CarpoolsController',[
 						message: "Your ride is leaving soon!",
 						type: 'alert-info'
 					};
+					$scope.$apply();
 				} else if(new Date() > departureTime) {
 					$scope.notification = {
 						message: "Your ride has already left!",
 						type: 'alert-danger'
 					};
+					$scope.$apply();
 				}
-				$scope.$apply();
 			}
 		};
 
@@ -260,7 +264,7 @@ angular.module('carpools').controller('CarpoolsController',[
 
 		$scope.canJoinCarPool = function(carpool) {
 			var result = true;
-			
+
 			if (carpool.numSeats - carpool.riders.length <= 0) {
 				result = false;
 			} else if (new Date(carpool.departureTime) < new Date()) {

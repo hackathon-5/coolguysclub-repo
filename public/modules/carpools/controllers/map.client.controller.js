@@ -29,11 +29,14 @@ angular.module('carpools').controller('MapsController',[
         };
 
         $scope.generateMarkers = function() {
+            $scope.markers = [];
+            $scope.infoWindows = [];
             angular.forEach($scope.carpools, function(carpool) {
                 var marker = new google.maps.Marker({
                     position: carpool.destination.location,
                     map: $scope.map
                 });
+                $scope.markers.push(marker);
                 var contentString = '<h4>' + carpool.destination.name + '</h4>' +
                                     '<div class="text-center">' + $filter('date')(carpool.departureTime, 'h:mm a') + ' - ' +
                                     $filter('date')(carpool.returnTime, 'h:mm a') + '</div>' +
@@ -42,6 +45,7 @@ angular.module('carpools').controller('MapsController',[
                 var infoWindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+                $scope.infoWindows.push(infoWindow);
                 marker.addListener('click', function() {
                     infoWindow.open($scope.map, marker);
                 });

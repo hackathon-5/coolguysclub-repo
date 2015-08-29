@@ -6,8 +6,8 @@ module.exports = {
 		title: 'parcool - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '943210085739753',
+		clientSecret: process.env.FACEBOOK_SECRET || 'a943064b62ac025aedb0210b67eab520',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
@@ -16,8 +16,8 @@ module.exports = {
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		clientID: process.env.GOOGLE_ID || '516267842504-cb5uraa6r8vr5hrfri185n03qi7en76j.apps.googleusercontent.com',
+		clientSecret: process.env.GOOGLE_SECRET || 'nydI4zgKspHgz3NyBcNjOa2-',
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {

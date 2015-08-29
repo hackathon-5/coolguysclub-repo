@@ -2,12 +2,29 @@
     <h3 class="modal-title">I'm driving!</h3>
 </div>
 <div class="modal-body">
-    <p>I'm going to</p>
-    <input type="text" class="input-lg" ng-model="carpool.destination"/>
-    <p> and I can hold </p>
-    <input type="number" class="input-sm" ng-model="carpool.numSeats"/>
-    <p>people. I'm leaving at</p>
-    <timepicker hour-step="1" minute-step="1" show-meridian="true" ng-model="carpool.departureTime"></timepicker>
+    <div ng-if="error" class="alert alert-danger">
+        {{error}}
+    </div>
+
+
+    <p>I'm going to
+    <input type="text" class="form-control-inline" ng-model="carpool.destination" placeholder="destination"/>
+    and I can hold
+    <input type="number" class="form-control-inline" ng-model="carpool.numSeats"  placeholder="number of seats"/>
+    people.</p>
+
+    <div class="row">
+        <div class="col-xs-3 label-deparatureTime">I'm leaving at</div>
+        <div class="col-xs-9">
+            <timepicker hour-step="1" minute-step="1" show-meridian="true" ng-model="carpool.departureTime"></timepicker>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="carpoolNote">Notes:</label>
+        <textarea class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note"></textarea>
+    </div>
+
 
 </div>
 <div class="modal-footer">

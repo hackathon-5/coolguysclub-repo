@@ -12,8 +12,11 @@ angular.module('carpools').controller('RegisterRideController',[
             $scope.carpool.$save(function() {
                 $modalInstance.close($scope.carpool);
             }, function(errorResponse) {
+                if (errorResponse.status === 401) {
+                    $modalInstance.close(undefined);
+                }
+
                 $scope.error = errorResponse.data.message;
-                $modalInstance.close(undefined);
             });
         };
 

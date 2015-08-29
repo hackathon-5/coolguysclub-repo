@@ -32,3 +32,11 @@
 .row {
 	margin: 1em;
 }
+
+.label-deparatureTime {
+	margin-top: 4rem;
+}
+
+.error {
+	margin-bottom: 0.5rem;
+}

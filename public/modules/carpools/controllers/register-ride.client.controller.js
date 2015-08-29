@@ -2,11 +2,11 @@
 
 // Carpools controller
 angular.module('carpools').controller('RegisterRideController',[
-    '$scope', '$stateParams', '$location', '$modalInstance', 'Authentication', 'Carpools',
-    function($scope, $stateParams, $location, $modalInstance, Authentication, Carpools) {
+    '$scope', '$stateParams', '$location', '$modalInstance', 'Authentication', 'Carpools', 'carpool',
+    function($scope, $stateParams, $location, $modalInstance, Authentication, Carpools, carpool) {
         $scope.authentication = Authentication;
 
-        $scope.carpool = new Carpools();
+        $scope.carpool = carpool;
 
         $scope.ok = function () {
             $scope.carpool.$save(function() {

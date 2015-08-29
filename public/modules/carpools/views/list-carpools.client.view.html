@@ -26,9 +26,9 @@
          ng-click="carpool.showDetail=!carpool.showDetail">
 
         <div class="row">
-            <div class="col-xs-4 carpool-destination">{{carpool.destination.name}}</div>
-            <div class="text-center col-xs-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}} - {{carpool.returnTime | date:'h:mm a'}} </div>
-            <div class="text-center col-xs-4 carpool-numSeats">{{carpool.numSeats - carpool.riders.length}} seats remaining</div>
+          <div class="col-xs-4 carpool-destination">{{carpool.destination.name}}</div>
+          <div class="text-center col-xs-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}} - {{carpool.returnTime | date:'h:mm a'}} </div>
+          <div class="text-center col-xs-4 carpool-numSeats">{{carpool.numSeats - carpool.riders.length}} seats remaining</div>
         </div>
 
         <small class="list-group-item-text">
@@ -38,11 +38,12 @@
           <span data-ng-bind="carpool.user.displayName"></span>
         </small>
 
-
-        <div ng-if="carpool.showDetail">
-            <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
-            <div ng-if="carpool.riders.length === 0">No riders yet!</div>
+        <div ng-if="carpool.showDetail" class="carpool-detail text-center">
+          <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
+          <div ng-if="carpool.riders.length === 0">No riders yet!</div>
+          <div class="text-center">
             <button type="button" class="btn btn-primary" ng-click="joinCarpool(carpool)">Join!</button>
+          </div>
         </div>
 
       </a>

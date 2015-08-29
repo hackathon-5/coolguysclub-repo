@@ -117,3 +117,9 @@ body {
 .carpool-view-button {
 	margin-top: 1rem;
 }
+
+.carpool-detail {
+	border-top: thin solid #e9ece5;
+	margin-top: 0.5rem;
+	padding-top: 0.5rem;
+}

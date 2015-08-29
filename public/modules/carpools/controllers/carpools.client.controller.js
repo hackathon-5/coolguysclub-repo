@@ -179,5 +179,17 @@ angular.module('carpools').controller('CarpoolsController',[
 		$scope.isRider = function(rider) {
 			return rider._id === $scope.authentication.user._id;
 		};
+
+		$scope.canJoinCarPool = function(carpool) {
+			var result = true;
+
+			if (carpool.numSeats - carpool.riders.length <= 0) {
+				result = false;
+			} else if (carpool.departureTime < new Date()) {
+				result = false;
+			}
+
+			return result;
+		}
 	}
 ]);

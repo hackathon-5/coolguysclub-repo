@@ -37,11 +37,11 @@
 
     <div ng-if="pageView === 'LIST'" class="row list-group">
         <a data-ng-repeat="carpool in carpools | filter:search:strict" class="list-group-item"
-           ng-click="carpool.showDetail=!carpool.showDetail" ng-if="carpool.numSeats - carpool.riders.length > 0">
+           ng-click="carpool.showDetail=!carpool.showDetail" ng-if="canJoinCarPool(carpool);">
 
             <div class="row">
                 <div class="col-xs-4 carpool-destination">{{carpool.destination}}</div>
-                <div class="text-center col-xs-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}}</div>
+                <div class="text-center col-xs-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}} - {{carpool.returnTime | date:'h:mm a'}} </div>
                 <div class="text-center col-xs-4 carpool-numSeats">{{carpool.numSeats - carpool.riders.length}}</div>
             </div>
 

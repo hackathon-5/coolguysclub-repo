@@ -38,7 +38,7 @@
           <span data-ng-bind="carpool.user.displayName"></span>
         </small>
 
-        <div ng-if="carpool.showDetail" class="carpool-detail text-center">
+        <div ng-if="carpool.showDetail" class="text-center">
           <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
           <div ng-if="carpool.riders.length === 0">No riders yet!</div>
           <div class="text-center">

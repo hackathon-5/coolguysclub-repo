@@ -1,7 +1,7 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="findOne()">
   <div class="page-header">
     <h1>
-      {{carpool.destination}}
+      {{carpool.destination.name}}
       <small>go time: {{carpool.departureTime | date:'h:mm a'}}</small>
     </h1>
   </div>

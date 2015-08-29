@@ -23,16 +23,18 @@ angular.module('carpools').controller('CarpoolsController',[
 			autocomplete.addListener('place_changed', function() {
 				var place = autocomplete.getPlace();
 
-				$scope.search = {
+				$scope.placeSearch = {
 					name: place.name,
 					location: {
 						lat: place.geometry.location.G,
 						lng: place.geometry.location.K
 					}
 				};
-				console.log($scope.search);
-
 			});
+		};
+
+		$scope.canShowDrive = function() {
+			return true;
 		};
 
 		$scope.drive = function () {
@@ -44,12 +46,12 @@ angular.module('carpools').controller('CarpoolsController',[
 					carpool: function() {
 						var result = new Carpools();
 
-						if ($scope.search) {
+						if ($scope.placeSearch) {
 							result.destination = {
-								name: $scope.search.name,
+								name: $scope.placeSearch.name,
 								location: {
-									lat: $scope.search.location.lat,
-									lng: $scope.search.location.lng
+									lat: $scope.placeSearch.location.lat,
+									lng: $scope.placeSearch.location.lng
 								}
 							};
 						}

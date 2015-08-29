@@ -2,20 +2,26 @@
   <div class="page-header">
     <h1>
       {{carpool.destination.name}}
-      <small>go time: {{carpool.departureTime | date:'h:mm a'}}</small>
     </h1>
   </div>
 
-  <div class="carpool-view-returnTime">
-      Returning around: <span>{{carpool.returnTime | date:'h:mm a'}}</span>
+  <div class="carpool-view-times">
+    <div>
+      go time: {{carpool.departureTime | date:'h:mm a'}}
+    </div>
+    <div>
+      returning around: <span>{{carpool.returnTime | date:'h:mm a'}}</span>
+    </div>
   </div>
 
-  <div class="form-group carpool-view-note">
+  <div class="form-group carpool-view-note" ng-if="carpool.user._id === authentication.user._id">
     <label for="carpoolNote">Notes:</label>
-    <textarea ng-if="carpool.user._id === authentication.user._id" class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="delay(update, 1000)"></textarea>
-    <p ng-if="carpool.user._id !== authentication.user._id" ng-bind="carpool.note">
+    <textarea class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="delay(update, 1000)"></textarea>
+  </div>
 
-    </p>
+  <div class="form-group carpool-view-note" ng-if="carpool.user._id !== authentication.user._id && carpool.note">
+    <label for="carpoolNote">Notes:</label>
+    <p ng-if="carpool.user._id !== authentication.user._id" ng-bind="carpool.note"></p>
   </div>
 
   <div class="carpool-view-driver">

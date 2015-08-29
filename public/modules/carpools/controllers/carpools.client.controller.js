@@ -6,14 +6,12 @@ angular.module('carpools').controller('CarpoolsController',[
 	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
 		$scope.authentication = Authentication;
 
-		$scope.register = function () {
-
+		$scope.registerRide = function () {
 			var modalInstance = $modal.open({
 				animation: true,
 				templateUrl: 'modules/carpools/views/register-ride.client.view.html',
 				controller: 'RegisterRideController'
 			});
-
 			modalInstance.result.then(function (carpool) {
 				$log.info(carpool);
 
@@ -21,6 +19,17 @@ angular.module('carpools').controller('CarpoolsController',[
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
+		};
+
+		$scope.joinCarpool = function(carpool) {
+			carpool.riders.push($scope.authentication);
+
+			carpool.$update(function(response) {
+				//$location.path('carpools/' + response._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+
 		};
 
 		// Create new Carpool

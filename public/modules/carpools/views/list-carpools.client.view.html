@@ -8,7 +8,7 @@
             <input type="text" class="form-control" placeholder="Where do you wanna go?"
                    ng-model="search.destination"/>
         </form>
-        <button type="button" class="btn" ng-click="register()">Drive</button>
+        <button type="button" class="btn" ng-click="registerRide()">Drive</button>
         <button type="button" class="btn" ng-click="search()">Ride</button>
     </div>
 
@@ -30,7 +30,8 @@
 
 
             <div ng-if="carpool.showDetail">
-                PENIS
+                <div>Riders: {{carpool.riders}}</div>
+                <button type="button" class="btn btn-warning" ng-click="joinCarpool(carpool)">Join!</button>
             </div>
 
 

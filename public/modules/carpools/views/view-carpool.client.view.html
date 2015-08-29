@@ -12,14 +12,21 @@
 
   <div class="form-group carpool-view-note">
     <label for="carpoolNote">Notes:</label>
-    <textarea class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="delay(update, 1000)"></textarea>
+    <textarea ng-if="carpool.user._id === authentication.user._id" class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="delay(update, 1000)"></textarea>
+    <p ng-if="carpool.user._id !== authentication.user._id" ng-bind="carpool.note">
+
+    </p>
   </div>
 
   <div class="carpool-view-driver">
-      <h3>
-          {{carpool.user.displayName}} is the driver. <br/>
-          <small>({{carpool.user.email}})</small>
-      </h3>
+    <h3 ng-if="carpool.user._id !== authentication.user._id">
+      {{carpool.user.displayName}} is the driver. <br/>
+      <small>({{carpool.user.email}})</small>
+    </h3>
+
+    <h3 ng-if="carpool.user._id === authentication.user._id">
+      You are driving!
+    </h3>
   </div>
 
   <div ng-show="carpool.riders" class="carpool-view-riders">

@@ -84,8 +84,7 @@ exports.delete = function(req, res) {
  * List of Carpools
  */
 exports.list = function(req, res) { 
-	Carpool.find( {
-
+	Carpool.find({
 	}).sort('departureTime')
 		.populate('user', 'displayName -_id')
 		.populate('riders', 'displayName -_id')
@@ -95,6 +94,16 @@ exports.list = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+
+			// Remove expired carpool
+			for (var i=0; i<carpools.length; i++) {
+				var carpool = carpools[i];
+
+				if (carpool.expired) {
+					carpools.splice(i, 1);
+				}
+			}
+
 			res.jsonp(carpools);
 		}
 	});

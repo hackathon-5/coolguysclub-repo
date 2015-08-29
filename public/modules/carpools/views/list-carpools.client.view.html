@@ -30,7 +30,8 @@
 
 
             <div ng-if="carpool.showDetail">
-                <div>Riders: {{carpool.riders}}</div>
+                <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
+                <div ng-if="carpool.riders.length === 0">No riders yet!</div>
                 <button type="button" class="btn btn-warning" ng-click="joinCarpool(carpool)">Join!</button>
             </div>
 

@@ -50,12 +50,11 @@ var CarpoolSchema = new Schema({
 
 // virtual field for expired true/false
 CarpoolSchema.virtual('expired').get(function() {
-	console.log(this.departureTime, new Date());
-
 	return new Date() > this.departureTime;
 });
 
 // this returns the virtual fields
 CarpoolSchema.set('toJSON', { virtuals: true });
+CarpoolSchema.set('toObject', { virtuals: true });
 
 mongoose.model('Carpool', CarpoolSchema);

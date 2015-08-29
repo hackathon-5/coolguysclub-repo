@@ -88,6 +88,9 @@ angular.module('carpools').controller('CarpoolsController',[
 		// Find a list of Carpools
 		$scope.find = function() {
 			$scope.carpools = Carpools.query();
+
+
+
 		};
 
 		// Find existing Carpool
@@ -95,6 +98,20 @@ angular.module('carpools').controller('CarpoolsController',[
 			$scope.carpool = Carpools.get({ 
 				carpoolId: $stateParams.carpoolId
 			});
+		};
+
+		$scope.getRiders = function(carpool) {
+			var riders = '';
+
+			if (carpool && carpool.riders && carpool.riders.length > 0) {
+				riders += carpool.riders[0].displayName;
+
+				for (var i=1; i<carpool.riders.length; i++) {
+					riders += ', ' + carpool.riders[i].displayName;
+				}
+			}
+
+			return riders;
 		};
 	}
 ]);

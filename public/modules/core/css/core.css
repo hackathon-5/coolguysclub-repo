@@ -30,11 +30,19 @@
 }
 
 .row {
-	margin: 1em;
+	margin-top: 1rem;
 }
 
 .label-deparatureTime {
 	margin-top: 4rem;
+}
+
+.page-view {
+	margin-top: 1rem;
+}
+
+.drive-button {
+	padding: 0;
 }
 
 .error {

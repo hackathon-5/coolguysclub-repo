@@ -1,24 +1,17 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="init()">
-    <div class="page-header">
-        <h1>
-            Carpools
-        </h1>
-    </div>
-
     <div class="row">
-        <div class="col-xs-2 drive-button">
-
-            <button type="button" class="btn"
-                    ng-if="canShowDrive()"
-                    ng-click="drive()">Drive</button>
-        </div>
-        <div class="col-xs-8 text-center page-view">
+        <div class="col-xs-11 text-center page-view">
             <div class="btn-group btn-group-xs">
                 <button type="button" class="btn btn-default"
                         ng-click="pageView = 'LIST'">list</button>
                 <button type="button" class="btn btn-default"
                         ng-click="pageView = 'MAP'">map</button>
             </div>
+        </div>
+        <div class="col-xs-1 drive-button">
+            <button type="button" class="btn btn-primary"
+                    ng-if="canShowDrive()"
+                    ng-click="drive()">Drive</button>
         </div>
     </div>
 
@@ -45,10 +38,11 @@
           <span data-ng-bind="carpool.user.displayName"></span>
         </small>
 
+
         <div ng-if="carpool.showDetail">
-          <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
-          <div ng-if="carpool.riders.length === 0">No riders yet!</div>
-          <button type="button" class="btn btn-warning" ng-click="joinCarpool(carpool)">Join!</button>
+            <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
+            <div ng-if="carpool.riders.length === 0">No riders yet!</div>
+            <button type="button" class="btn btn-primary" ng-click="joinCarpool(carpool)">Join!</button>
         </div>
 
       </a>

@@ -23,7 +23,7 @@
 
     <div ng-if="pageView === 'LIST'" class="row list-group">
       <a data-ng-repeat="carpool in carpools | filter:placeSearch.name" class="list-group-item"
-         ng-click="carpool.showDetail=!carpool.showDetail" ng-if="canJoinCarPool(carpool)">
+         ng-click="carpool.showDetail=!carpool.showDetail">
 
         <div class="row">
             <div class="col-xs-4 carpool-destination">{{carpool.destination.name}}</div>

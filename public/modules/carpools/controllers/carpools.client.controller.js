@@ -160,6 +160,16 @@ angular.module('carpools').controller('CarpoolsController',[
 					$location.path('carpools/' + myCarpool._id);
 				}
 
+				// remove car pools without seats
+				for (var i=0; i<carpools.length; i++) {
+					var carpool = carpools[i];
+
+					if (!$scope.canJoinCarPool(carpool)) {
+						carpools.splice(i, 1);
+						i--;
+					}
+				}
+
 				$scope.carpools = carpools;
 
 			});

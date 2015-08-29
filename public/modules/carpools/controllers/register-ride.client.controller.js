@@ -10,10 +10,12 @@ angular.module('carpools').controller('RegisterRideController',[
 
         $scope.ok = function () {
             $scope.carpool.$save(function() {
+
+                $modalInstance.close($scope.carpool);
+
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
-            $modalInstance.close($scope.carpool);
         };
 
         $scope.cancel = function () {

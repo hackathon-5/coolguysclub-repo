@@ -11,3 +11,15 @@ angular.module('carpools').factory('Carpools', ['$resource',
 		});
 	}
 ]);
+
+angular.module('carpools').factory('CarpoolService', ['$http',
+	function($http) {
+		var service = {};
+
+		service.joinRide = function(user) {
+
+		};
+
+		return service;
+	}
+]);

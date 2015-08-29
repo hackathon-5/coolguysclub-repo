@@ -31,10 +31,13 @@ var CarpoolSchema = new Schema({
 		default: '',
 		trim: true
 	},
+
 	riders: [{
 		type: Schema.ObjectId,
 		ref: 'User'
 	}],
+
+
 	created: {
 		type: Date,
 		default: Date.now

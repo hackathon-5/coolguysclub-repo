@@ -14,6 +14,9 @@ module.exports = function(app) {
 		.put(users.requiresLogin, carpools.update)
 		.delete(users.requiresLogin, carpools.hasAuthorization, carpools.delete);
 
+	app.route('/carpools/:carpoolId/joinRide')
+		.put(users.requiresLogin, carpools.joinRide);
+
 	// Finish by binding the Carpool middleware
 	app.param('carpoolId', carpools.carpoolByID);
 };

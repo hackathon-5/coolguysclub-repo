@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Carpool = mongoose.model('Carpool'),
+	User = mongoose.model('User'),
 	_ = require('lodash');
 
 /**
@@ -37,9 +38,12 @@ exports.read = function(req, res) {
  * Update a Carpool
  */
 exports.update = function(req, res) {
-	var carpool = req.carpool ;
+	var carpool = req.carpool;
 
 	carpool = _.extend(carpool , req.body);
+	carpool.populate('riders');
+
+	console.log(carpool);
 
 	carpool.save(function(err) {
 		if (err) {
@@ -51,6 +55,13 @@ exports.update = function(req, res) {
 		}
 	});
 };
+
+exports.joinRide = function(req, res) {
+	var carpool = req.carpool;
+
+
+};
+
 
 /**
  * Delete an Carpool
@@ -75,7 +86,10 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) { 
 	Carpool.find( {
 
-	}).sort('departureTime').populate('user', 'displayName').exec(function(err, carpools) {
+	}).sort('departureTime')
+		.populate('user', 'displayName -_id')
+		.populate('riders', 'displayName -_id')
+		.exec(function(err, carpools) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -90,7 +104,10 @@ exports.list = function(req, res) {
  * Carpool middleware
  */
 exports.carpoolByID = function(req, res, next, id) { 
-	Carpool.findById(id).populate('user', 'displayName').exec(function(err, carpool) {
+	Carpool.findById(id)
+		.populate('user', 'displayName')
+		.populate('riders')
+		.exec(function(err, carpool) {
 		if (err) return next(err);
 		if (! carpool) return next(new Error('Failed to load Carpool ' + id));
 		req.carpool = carpool ;
@@ -107,3 +124,5 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+

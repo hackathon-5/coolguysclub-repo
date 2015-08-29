@@ -15,18 +15,25 @@ angular.module('carpools').controller('CarpoolsController',[
 			modalInstance.result.then(function (carpool) {
 				$log.info(carpool);
 
-				$scope.carpools.push(carpool)
+				$scope.carpools.push(carpool);
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};
 
 		$scope.joinCarpool = function(carpool) {
-			carpool.riders.push($scope.authentication);
+			//console.log($scope.authentication.user);
+
+			carpool.riders.push($scope.authentication.user._id);
 
 			carpool.$update(function(response) {
 				//$location.path('carpools/' + response._id);
+
+				console.log(response);
+
 			}, function(errorResponse) {
+				carpool.riders.pop();
+
 				$scope.error = errorResponse.data.message;
 			});
 

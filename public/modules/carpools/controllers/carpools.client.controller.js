@@ -2,8 +2,8 @@
 
 // Carpools controller
 angular.module('carpools').controller('CarpoolsController',[
-	'$scope', '$stateParams', '$location', '$modal', '$log', 'Authentication', 'Carpools',
-	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
+	'$scope', '$stateParams', '$location', '$modal', '$log', 'Authentication', 'Carpools', '$rootScope',
+	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools, $rootScope) {
 		$scope.authentication = Authentication;
 
 		$scope.pageView = 'LIST';
@@ -11,6 +11,19 @@ angular.module('carpools').controller('CarpoolsController',[
 		if(!$scope.authentication.user) {
 			$location.path('/signin');
 		}
+
+		$scope.init = function() {
+			$scope.find();
+			$scope.initSearch();
+		};
+
+		$scope.initSearch = function() {
+			var autocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'));
+			autocomplete.addListener('place_changed', function() {
+				var place = autocomplete.getPlace();
+				console.log(place);
+			})
+		};
 
 		$scope.drive = function () {
 			var modalInstance = $modal.open({

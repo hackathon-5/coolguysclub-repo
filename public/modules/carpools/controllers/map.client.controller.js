@@ -41,7 +41,7 @@ angular.module('carpools').controller('MapsController',[
                                     '<div class="text-center">' + $filter('date')(carpool.departureTime, 'h:mm a') + ' - ' +
                                     $filter('date')(carpool.returnTime, 'h:mm a') + '</div>' +
                                     '<div class="text-center"> Seats: ' + carpool.numSeats + '</div>' +
-                    '<div class="text-center"><a href="#!/carpools/'+ carpool._id + '/join"><button type="button" class="btn btn-warning">Join!</button></a></div>';
+                    '<div class="text-center"><a href="#!/carpools/'+ carpool._id + '/join"><button type="button" class="btn btn-primary">Join!</button></a></div>';
                 var infoWindow = new google.maps.InfoWindow({
                     content: contentString
                 });

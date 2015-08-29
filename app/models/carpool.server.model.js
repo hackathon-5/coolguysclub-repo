@@ -6,6 +6,10 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+var validateReturnTime = function(returnTime) {
+	return this.departureTime < returnTime;
+};
+
 /**
  * Carpool Schema
  */
@@ -16,11 +20,21 @@ var CarpoolSchema = new Schema({
 		required: 'Please fill Carpool destination',
 		trim: true
 	},
+
 	departureTime: {
 		type: Date,
 		default: Date.now,
 		required: 'Please fill Carpool departure time'
 	},
+
+	returnTime: {
+		type: Date,
+		default: Date.now,
+		required: 'Please fill Carpool departure time',
+		validate: [validateReturnTime, 'Return time should come after departure time.']
+	},
+
+
 	numSeats: {
 		type: Number,
 		required: 'Please fill Carpool number of seats'
@@ -49,7 +63,7 @@ var CarpoolSchema = new Schema({
 
 // virtual field for expired true/false
 CarpoolSchema.virtual('expired').get(function() {
-	return new Date() > this.departureTime;
+	return new Date() > this.returnTime;
 });
 
 // this returns the virtual fields

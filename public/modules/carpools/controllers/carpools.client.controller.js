@@ -29,7 +29,18 @@ angular.module('carpools').controller('CarpoolsController',[
 			var modalInstance = $modal.open({
 				animation: true,
 				templateUrl: 'modules/carpools/views/register-ride.client.view.html',
-				controller: 'RegisterRideController'
+				controller: 'RegisterRideController',
+				resolve: {
+					carpool: function() {
+						var result = new Carpools();
+
+						if ($scope.search) {
+							result.destination = $scope.search.destination;
+						}
+
+						return result;
+					}
+				}
 			});
 			modalInstance.result.then(function (carpool) {
 				$log.info(carpool);
@@ -181,5 +192,17 @@ angular.module('carpools').controller('CarpoolsController',[
 		$scope.isRider = function(rider) {
 			return rider._id === $scope.authentication.user._id;
 		};
+
+		$scope.canJoinCarPool = function(carpool) {
+			var result = true;
+
+			if (carpool.numSeats - carpool.riders.length <= 0) {
+				result = false;
+			} else if (carpool.departureTime < new Date()) {
+				result = false;
+			}
+
+			return result;
+		}
 	}
 ]);

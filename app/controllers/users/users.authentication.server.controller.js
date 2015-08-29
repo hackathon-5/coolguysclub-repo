@@ -83,6 +83,9 @@ exports.signout = function(req, res) {
 exports.oauthCallback = function(strategy) {
 	return function(req, res, next) {
 		passport.authenticate(strategy, function(err, user, redirectURL) {
+			console.log('err: ', err);
+			console.log('user: ', user);
+
 			if (err || !user) {
 				return res.redirect('/#!/signin');
 			}
@@ -91,7 +94,7 @@ exports.oauthCallback = function(strategy) {
 					return res.redirect('/#!/signin');
 				}
 
-				return res.redirect(redirectURL || '/');
+				return res.redirect(redirectURL || '/#!/');
 			});
 		})(req, res, next);
 	};

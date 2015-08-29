@@ -96,54 +96,6 @@ var UserSchema = new Schema({
 });
 
 
-// virtual field to determined if they are driving or riding
-//UserSchema.virtual('status').get(function() {
-//	var states = {
-//		driver: 'driver',
-//		rider: 'rider'
-//	};
-//
-//	Carpool.find({
-//
-//	}).sort('departureTime')
-//		.populate('user', 'displayName -_id')
-//		.populate('riders', 'displayName -_id')
-//		.exec(function(err, carpools) {
-//			if (err) {
-//				console.log(err);
-//			} else {
-//
-//				// Remove expired carpool
-//				for (var i=0; i<carpools.length; i++) {
-//					var carpool = carpools[i];
-//
-//					// skip expired
-//					if (carpool.expired) {
-//						continue;
-//					}
-//
-//					// check driver name
-//					if (carpool.user === this) {
-//						return states.driver;
-//					}
-//
-//					// check for rider status
-//					for (var j=0; j<carpool.riders.length; j++) {
-//						var rider = carpool.riders[j];
-//
-//						if (rider === this) {
-//							return states.rider;
-//						}
-//					}
-//				}
-//
-//				return 'perry';
-//			}
-//		});
-//});
-
-
-
 /**
  * Hook a pre save method to hash the password
  */

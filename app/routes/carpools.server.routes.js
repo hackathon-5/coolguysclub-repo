@@ -11,7 +11,7 @@ module.exports = function(app) {
 
 	app.route('/carpools/:carpoolId')
 		.get(carpools.read)
-		.put(users.requiresLogin, carpools.hasAuthorization, carpools.update)
+		.put(users.requiresLogin, carpools.update)
 		.delete(users.requiresLogin, carpools.hasAuthorization, carpools.delete);
 
 	// Finish by binding the Carpool middleware

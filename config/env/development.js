@@ -6,13 +6,13 @@ module.exports = {
 		title: 'parcool - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || '943210085739753',
-		clientSecret: process.env.FACEBOOK_SECRET || 'a943064b62ac025aedb0210b67eab520',
+		clientID: process.env.FACEBOOK_ID || '1669007563320531',
+		clientSecret: process.env.FACEBOOK_SECRET || '9658d378dd692ef30264ae2f994319f7',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
-		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+		clientID: process.env.TWITTER_KEY || 'LCaYR9kf1u58KOYPSLSvZS3J7',
+		clientSecret: process.env.TWITTER_SECRET || '37i4h9mRVhzWFVGK4AQFnDMFp7oaaqGZmEqvrgdng1sl0bfaih',
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {

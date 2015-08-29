@@ -1,13 +1,13 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="findOne()">
   <div class="page-header">
     <h1>
-      {{carpool.destination}}
+      {{carpool.destination.name}}
       <small>go time: {{carpool.departureTime | date:'h:mm a'}}</small>
     </h1>
   </div>
 
   <div class="carpool-view-returnTime">
-      Returning around: <span>{{carpool.departureTime | date:'h:mm a'}}</span>
+      Returning around: <span>{{carpool.returnTime | date:'h:mm a'}}</span>
   </div>
 
   <div class="form-group carpool-view-note">
@@ -43,11 +43,11 @@
 
 
 
-  <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id != carpool.user._id))">
+  <div class="pull-right" data-ng-if="((authentication.user) && (authentication.user._id != carpool.user._id))">
     <button type="button" class="btn btn-warning" ng-click="unjoinCarpool(carpool)">Unjoin?!</button>
   </div>
 
-  <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == carpool.user._id))">
+  <div class="pull-right" data-ng-if="((authentication.user) && (authentication.user._id == carpool.user._id))">
     <a class="btn btn-primary" data-ng-click="remove();">
       <i class="glyphicon glyphicon-trash"></i>
     </a>

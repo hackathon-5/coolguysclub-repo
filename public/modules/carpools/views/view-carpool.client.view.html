@@ -1,5 +1,9 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="findOne()">
+
   <div class="page-header">
+    <div ng-if="notification" class="alert" ng-class="notification.type">
+      {{notification.message}}
+    </div>
     <h1>
       {{carpool.destination.name}}
       <small>go time: {{carpool.departureTime | date:'h:mm a'}}</small>

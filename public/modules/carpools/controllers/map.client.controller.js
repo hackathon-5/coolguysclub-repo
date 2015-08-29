@@ -2,8 +2,8 @@
 
 // Carpools controller
 angular.module('carpools').controller('MapsController',[
-    '$scope', 'Authentication', 'Carpools',
-    function($scope, Authentication, Carpools) {
+    '$scope', '$filter', 'Authentication', 'Carpools',
+    function($scope, $filter, Authentication, Carpools) {
         $scope.authentication = Authentication;
 
         $scope.initMap = function() {
@@ -25,15 +25,24 @@ angular.module('carpools').controller('MapsController',[
 
             $scope.geocoder = new google.maps.Geocoder();
 
-            //$scope.generateMarkers();
+            $scope.generateMarkers();
         };
 
         $scope.generateMarkers = function() {
             angular.forEach($scope.carpools, function(carpool) {
-                var location = $scope.getLocation("test");
-                new google.maps.Marker({
-                    position: location,
+                var marker = new google.maps.Marker({
+                    position: carpool.destination.location,
                     map: $scope.map
+                });
+                var contentString = '<h4>' + carpool.destination.name + '</h4>' +
+                                    '<div>' + $filter('date')(carpool.departureTime, 'h:mm a') + ' - ' +
+                                    $filter('date')(carpool.returnTime, 'h:mm a') + '</div>' +
+                    '<a href="#!/carpools/'+ carpool._id + '/join"><button type="button" class="btn btn-warning">Join!</button></a>';
+                var infoWindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                marker.addListener('click', function() {
+                    infoWindow.open($scope.map, marker);
                 });
             });
         };
@@ -46,6 +55,18 @@ angular.module('carpools').controller('MapsController',[
                     }
                 });
             }
+        };
+
+        var joinCarpool = function(carpool) {
+            carpool.riders.push($scope.authentication.user._id);
+
+            carpool.$update(function(response) {
+                $location.path('carpools/' + carpool._id);
+            }, function(errorResponse) {
+                carpool.riders.pop();
+                $scope.error = errorResponse.data.message;
+            });
+
         };
 
     }

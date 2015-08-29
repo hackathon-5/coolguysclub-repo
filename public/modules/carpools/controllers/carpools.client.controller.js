@@ -222,6 +222,14 @@ angular.module('carpools').controller('CarpoolsController',[
 			}
 
 			return result;
-		}
+		};
+
+		$scope.delay = (function() {
+			var promise = null;
+			return function(callback, ms) {
+				$timeout.cancel(promise); //clearTimeout(timer);
+				promise = $timeout(callback, ms); //timer = setTimeout(callback, ms);
+			};
+		})();
 	}
 ]);

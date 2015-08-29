@@ -12,7 +12,7 @@
 
   <div class="form-group carpool-view-note">
     <label for="carpoolNote">Notes:</label>
-    <textarea class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="update()"></textarea>
+    <textarea class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="delay(update, 1000)"></textarea>
   </div>
 
   <div class="carpool-view-driver">

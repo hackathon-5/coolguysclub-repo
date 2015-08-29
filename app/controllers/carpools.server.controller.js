@@ -86,8 +86,8 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) { 
 	Carpool.find({
 	}).sort('departureTime')
-		.populate('user', 'displayName -_id')
-		.populate('riders', 'displayName -_id')
+		.populate('user', 'displayName')
+		.populate('riders', 'displayName')
 		.exec(function(err, carpools) {
 		if (err) {
 			return res.status(400).send({
@@ -101,6 +101,7 @@ exports.list = function(req, res) {
 
 				if (carpool.expired) {
 					carpools.splice(i, 1);
+					i--;
 				}
 			}
 

@@ -16,6 +16,7 @@ angular.module('carpools').controller('CarpoolsController',[
 				$log.info(carpool);
 
 				$scope.carpools.push(carpool);
+				$location.path('carpools/' + carpool._id);
 			}, function () {
 				$log.info('Modal dismissed at: ' + new Date());
 			});
@@ -27,9 +28,9 @@ angular.module('carpools').controller('CarpoolsController',[
 			carpool.riders.push($scope.authentication.user._id);
 
 			carpool.$update(function(response) {
-				//$location.path('carpools/' + response._id);
-
 				console.log(response);
+
+				$location.path('carpools/' + carpool._id);
 
 			}, function(errorResponse) {
 				carpool.riders.pop();
@@ -87,11 +88,40 @@ angular.module('carpools').controller('CarpoolsController',[
 
 		// Find a list of Carpools
 		$scope.find = function() {
-			$scope.carpools = Carpools.query();
+			Carpools.query(function(carpools) {
+				// check if they have a carpool already
+				var myCarpool = findUserCarpool(carpools);
+				if (myCarpool) {
+					// route to summary
+					$location.path('carpools/' + myCarpool._id);
+				}
 
+				$scope.carpools = carpools;
 
-
+			});
 		};
+
+		function findUserCarpool(carpools) {
+			for (var i=0; i<carpools.length; i++) {
+				var carpool = carpools[i];
+
+				// check driver name
+				if (carpool.user._id === $scope.authentication.user._id) {
+					return carpool;
+				}
+
+				// check for rider status
+				for (var j=0; j<carpool.riders.length; j++) {
+					var rider = carpool.riders[j];
+
+					if (rider._id === $scope.authentication.user._id) {
+						return carpool;
+					}
+				}
+			}
+
+			return undefined;
+		}
 
 		// Find existing Carpool
 		$scope.findOne = function() {

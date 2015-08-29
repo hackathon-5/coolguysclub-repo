@@ -15,10 +15,16 @@ var validateReturnTime = function(returnTime) {
  */
 var CarpoolSchema = new Schema({
 	destination: {
-		type: String,
-		default: '',
-		required: 'Please fill Carpool destination',
-		trim: true
+		name: {
+			type: String,
+			default: '',
+			required: 'Please fill Carpool destination',
+			trim: true
+		},
+		location: {
+			lat: Number,
+			lng: Number
+		}
 	},
 
 	departureTime: {

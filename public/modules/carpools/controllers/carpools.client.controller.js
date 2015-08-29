@@ -7,6 +7,7 @@ angular.module('carpools').controller('CarpoolsController',[
 		$scope.authentication = Authentication;
 
 		$scope.pageView = 'LIST';
+		$scope.search = {};
 
 		if(!$scope.authentication.user) {
 			$location.path('/signin');
@@ -21,8 +22,17 @@ angular.module('carpools').controller('CarpoolsController',[
 			var autocomplete = new google.maps.places.Autocomplete(document.getElementById('destination'));
 			autocomplete.addListener('place_changed', function() {
 				var place = autocomplete.getPlace();
-				console.log(place);
-			})
+
+				$scope.search = {
+					name: place.name,
+					location: {
+						lat: place.geometry.location.G,
+						lng: place.geometry.location.K
+					}
+				};
+				console.log($scope.search);
+
+			});
 		};
 
 		$scope.drive = function () {
@@ -35,7 +45,13 @@ angular.module('carpools').controller('CarpoolsController',[
 						var result = new Carpools();
 
 						if ($scope.search) {
-							result.destination = $scope.search.destination;
+							result.destination = {
+								name: $scope.search.name,
+								location: {
+									lat: $scope.search.location.lat,
+									lng: $scope.search.location.lng
+								}
+							};
 						}
 
 						return result;
@@ -48,6 +64,7 @@ angular.module('carpools').controller('CarpoolsController',[
 				$scope.carpools.push(carpool);
 				$location.path('carpools/' + carpool._id);
 			}, function () {
+				$scope.search = {};
 				$log.info('Modal dismissed at: ' + new Date());
 			});
 		};

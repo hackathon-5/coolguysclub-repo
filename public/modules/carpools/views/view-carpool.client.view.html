@@ -43,22 +43,22 @@
 
 
 
-  <div class="pull-right" data-ng-if="((authentication.user) && (authentication.user._id != carpool.user._id))">
-    <button type="button" class="btn btn-warning" ng-click="unjoinCarpool(carpool)">Unjoin?!</button>
+  <div class="" data-ng-if="((authentication.user) && (authentication.user._id != carpool.user._id))">
+    <button type="button" class="btn btn-primary carpool-view-button" ng-click="unjoinCarpool(carpool)">Unjoin?!</button>
   </div>
 
-  <div class="pull-right" data-ng-if="((authentication.user) && (authentication.user._id == carpool.user._id))">
-    <a class="btn btn-primary" data-ng-click="remove();">
+  <div class="" data-ng-if="((authentication.user) && (authentication.user._id == carpool.user._id))">
+    <a class="btn btn-primary carpool-view-button" data-ng-click="remove();">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
 
-  <small>
-    <em class="text-muted">
-      Posted on
-      <span data-ng-bind="carpool.created | date:'mediumDate'"></span>
-      by
-      <span data-ng-bind="carpool.user.displayName"></span>
-    </em>
-  </small>
+  <!--<small>-->
+    <!--<em class="text-muted">-->
+      <!--Posted on-->
+      <!--<span data-ng-bind="carpool.created | date:'mediumDate'"></span>-->
+      <!--by-->
+      <!--<span data-ng-bind="carpool.user.displayName"></span>-->
+    <!--</em>-->
+  <!--</small>-->
 </section>

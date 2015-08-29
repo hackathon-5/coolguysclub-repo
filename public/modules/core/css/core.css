@@ -108,3 +108,12 @@ body {
 	border-radius: 5px;
 	border: 1px solid silver;
 }
+
+.carpool-view-returnTime {
+	margin-top: -4rem;
+	margin-bottom: 1rem;
+}
+
+.carpool-view-button {
+	margin-top: 1rem;
+}

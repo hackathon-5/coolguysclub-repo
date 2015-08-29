@@ -1,0 +1,45 @@
+<section data-ng-controller="CarpoolsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Carpools</h1>
+    </div>
+
+    <div>
+        <form ng-submit="search()">
+            <input type="text" class="form-control" placeholder="Where do you wanna go?"
+                   ng-model="search.destination"/>
+        </form>
+        <button type="button" class="btn" ng-click="register()">Drive</button>
+        <button type="button" class="btn" ng-click="search()">Ride</button>
+    </div>
+
+
+
+    <div class="list-group">
+        <a data-ng-repeat="carpool in carpools | filter:search:strict" class="list-group-item" ng-click="carpool.showDetail=!carpool.showDetail">
+            <div class="row">
+                <div class="col-sm-4 carpool-destination">{{carpool.destination}}</div>
+                <div class="text-center col-sm-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}}</div>
+                <div class="text-center col-sm-4 carpool-numSeats">{{carpool.numSeats}}</div>
+            </div>
+            <small class="list-group-item-text">
+                Posted on
+                <span data-ng-bind="carpool.created | date:'medium'"></span>
+                by
+                <span data-ng-bind="carpool.user.displayName"></span>
+            </small>
+
+
+            <div ng-if="carpool.showDetail">
+                PENIS
+            </div>
+
+
+        </a>
+    </div>
+
+
+
+    <div class="alert alert-warning text-center" data-ng-hide="!carpools.$resolved || carpools.length">
+    	No Carpools yet, why don't you <a href="/#!/carpools/create">create one</a>?
+    </div>
+</section>

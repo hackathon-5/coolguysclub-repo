@@ -2,21 +2,25 @@
     <div class="page-header">
         <h1>
             Carpools
-            <button class="right btn" type="button" class="btn"
-                    ng-if="pageView !== 'HOME'"
-                    ng-click="drive()">Drive</button>
+
         </h1>
     </div>
 
-    <div class="row text-center">
-        <div class="btn-group btn-group-xs text-center">
-            <button type="button" class="btn btn-default"
-                    ng-click="pageView = 'LIST'">list</button>
-            <button type="button" class="btn btn-default"
-                    ng-click="pageView = 'MAP'">map</button>
+    <div class="row">
+        <div class="col-xs-2 drive-button">
+            <button type="button" class="btn"
+                    ng-if="pageView !== 'HOME'"
+                    ng-click="drive()">Drive</button>
+        </div>
+        <div class="col-xs-8 text-center page-view">
+            <div class="btn-group btn-group-xs">
+                <button type="button" class="btn btn-default"
+                        ng-click="pageView = 'LIST'">list</button>
+                <button type="button" class="btn btn-default"
+                        ng-click="pageView = 'MAP'">map</button>
+            </div>
         </div>
     </div>
-
 
     <div class="row">
         <form>
@@ -28,9 +32,7 @@
     <div ng-if="pageView === 'HOME'" class="row text-center">
         <div>
             <button type="button" class="btn" ng-click="drive()">Drive</button>
-            <button type="button" class="btn" ng-click="ride()">Ride</button>
         </div>
-
     </div>
 
     <div ng-if="pageView === 'LIST'" class="row list-group">

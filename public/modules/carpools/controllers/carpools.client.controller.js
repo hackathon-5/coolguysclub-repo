@@ -6,15 +6,11 @@ angular.module('carpools').controller('CarpoolsController',[
 	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
 		$scope.authentication = Authentication;
 
-		$scope.pageView = 'HOME';
+		$scope.pageView = 'LIST';
 
 		if(!$scope.authentication.user) {
 			$location.path('/signin');
 		}
-
-		$scope.ride = function() {
-			$scope.pageView = 'LIST';
-		};
 
 		$scope.drive = function () {
 			var modalInstance = $modal.open({

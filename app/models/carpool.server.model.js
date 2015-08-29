@@ -23,7 +23,6 @@ var CarpoolSchema = new Schema({
 	},
 	numSeats: {
 		type: Number,
-		default: 1,
 		required: 'Please fill Carpool number of seats'
 	},
 	note: {

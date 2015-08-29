@@ -2,8 +2,13 @@
   <div class="page-header">
     <h1>
         {{carpool.destination}}
-        <small>leaving at: {{carpool.departureTime | date:'h:mm a'}}</small>
+        <small>go time: {{carpool.departureTime | date:'h:mm a'}}</small>
     </h1>
+  </div>
+
+  <div class="form-group">
+    <label for="carpoolNote">Notes:</label>
+    <textarea class="form-control" rows="3" id="carpoolNote" ng-model="carpool.note" ng-change="update()"></textarea>
   </div>
 
   <div>
@@ -13,7 +18,7 @@
       </h3>
   </div>
 
-  <div>
+  <div ng-show="carpool.riders">
       <h3>
           Here are the riders...
       </h3>
@@ -22,8 +27,15 @@
               {{rider.displayName}} &nbsp;-&nbsp; <span class="text-muted rider-email">{{rider.email}}</span>
           </li>
       </ul>
-
   </div>
+
+  <div ng-hide="carpool.riders">
+    <h3>
+      No riders yet.
+    </h3>
+  </div>
+
+
 
 
 
@@ -35,8 +47,8 @@
     <a class="btn btn-primary" data-ng-click="remove();">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
-
   </div>
+
   <small>
     <em class="text-muted">
       Posted on

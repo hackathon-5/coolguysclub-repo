@@ -63,7 +63,7 @@ var CarpoolSchema = new Schema({
 
 // virtual field for expired true/false
 CarpoolSchema.virtual('expired').get(function() {
-	return new Date() > this.departureTime;
+	return new Date() > this.returnTime;
 });
 
 // this returns the virtual fields

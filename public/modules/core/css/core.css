@@ -48,3 +48,63 @@
 .error {
 	margin-bottom: 0.5rem;
 }
+
+.navbar-inverse {
+	background-color: #c0dfd9;
+	border-color: #c0dfd9;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #3b3a36;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: #3b3a36;
+}
+
+.btn-primary {
+	background-color: #3b3a36;
+	border-color: #3b3a36;
+}
+
+.btn-primary:hover {
+	background-color: #b3c2bf;
+	border-color: #b3c2bf;
+}
+
+.btn-primary:active:hover, .btn-primary.active:hover, .open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus, .btn-primary.active:focus, .open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus, .btn-primary.active.focus, .open > .dropdown-toggle.btn-primary.focus {
+	background-color: #3b3a36;
+	border-color: #3b3a36;
+}
+
+.btn-default {
+	color: #3b3a36;
+}
+
+.btn-default:hover {
+	background-color: #b3c2bf;
+	border-color: #b3c2bf;
+	color: #fff;
+}
+
+.modal-content {
+	background-color: #e9ece5;
+}
+
+.btn-link {
+	color: #3b3a36;
+}
+
+.btn-link:hover {
+	color: #b3c2bf;
+}
+
+.logo {
+	margin-top: -10px;
+}
+
+body {
+	background-color: #e9ece5;
+}

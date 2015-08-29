@@ -24,12 +24,12 @@
 
     <div class="row">
       <form>
-        <input type="text" class="form-control" placeholder="Where do you wanna go?" id="destination"/>
+        <input type="text" class="form-control" placeholder="Where do you wanna go?" ng-model="placeSearch.name" id="destination"/>
       </form>
     </div>
 
     <div ng-if="pageView === 'LIST'" class="row list-group">
-      <a data-ng-repeat="carpool in carpools | filter:placeSearch.name:strict" class="list-group-item"
+      <a data-ng-repeat="carpool in carpools | filter:placeSearch.name" class="list-group-item"
          ng-click="carpool.showDetail=!carpool.showDetail" ng-if="canJoinCarPool(carpool)">
 
         <div class="row">

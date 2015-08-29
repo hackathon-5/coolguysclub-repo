@@ -260,10 +260,10 @@ angular.module('carpools').controller('CarpoolsController',[
 
 		$scope.canJoinCarPool = function(carpool) {
 			var result = true;
-
+			
 			if (carpool.numSeats - carpool.riders.length <= 0) {
 				result = false;
-			} else if (carpool.departureTime < new Date()) {
+			} else if (new Date(carpool.departureTime) < new Date()) {
 				result = false;
 			}
 

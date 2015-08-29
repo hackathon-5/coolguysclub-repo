@@ -2,8 +2,8 @@
 
 // Carpools controller
 angular.module('carpools').controller('CarpoolsController',[
-	'$scope', '$stateParams', '$location', '$modal', '$log', 'Authentication', 'Carpools',
-	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
+	'$scope', '$stateParams', '$location', '$modal', '$log', 'Authentication', 'Carpools', '$timeout',
+	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools, $timeout) {
 		$scope.authentication = Authentication;
 
 		$scope.pageView = 'LIST';
@@ -189,8 +189,16 @@ angular.module('carpools').controller('CarpoolsController',[
 
 		// Find existing Carpool
 		$scope.findOne = function() {
-			$scope.carpool = Carpools.get({ 
+			Carpools.get({
 				carpoolId: $stateParams.carpoolId
+			}, function(carpool) {
+
+				// check if expired
+				if (carpool.expired) {
+					$location.path('/');
+				}
+
+				$scope.carpool = carpool;
 			});
 		};
 

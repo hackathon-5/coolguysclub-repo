@@ -211,28 +211,33 @@ angular.module('carpools').controller('CarpoolsController',[
 				}
 
 				$scope.carpool = carpool;
+				$scope.updateNotification();
 
 				window.setInterval(function() {
-					if($scope.carpool && $scope.carpool.departureTime) {
-						var tenMinutesFromNow = new Date();
-						var departureTime = new Date($scope.carpool.departureTime);
-						tenMinutesFromNow.setMinutes(tenMinutesFromNow.getMinutes() + 10);
-						if((new Date() < departureTime) && (departureTime < tenMinutesFromNow)) {
-							$scope.notification = {
-								message: "Your ride is leaving soon!",
-								type: 'alert-info'
-							};
-						} else if(new Date() > departureTime) {
-							$scope.notification = {
-								message: "Your ride has already left!",
-								type: 'alert-danger'
-							};
-						}
-						$scope.$apply();
-					}
+					$scope.updateNotification();
 				}, 10000);
 
 			});
+		};
+
+		$scope.updateNotification = function() {
+			if($scope.carpool && $scope.carpool.departureTime) {
+				var tenMinutesFromNow = new Date();
+				var departureTime = new Date($scope.carpool.departureTime);
+				tenMinutesFromNow.setMinutes(tenMinutesFromNow.getMinutes() + 10);
+				if((new Date() < departureTime) && (departureTime < tenMinutesFromNow)) {
+					$scope.notification = {
+						message: "Your ride is leaving soon!",
+						type: 'alert-info'
+					};
+				} else if(new Date() > departureTime) {
+					$scope.notification = {
+						message: "Your ride has already left!",
+						type: 'alert-danger'
+					};
+				}
+				$scope.$apply();
+			}
 		};
 
 		$scope.getRiders = function(carpool) {
@@ -255,10 +260,10 @@ angular.module('carpools').controller('CarpoolsController',[
 
 		$scope.canJoinCarPool = function(carpool) {
 			var result = true;
-
+			
 			if (carpool.numSeats - carpool.riders.length <= 0) {
 				result = false;
-			} else if (carpool.departureTime < new Date()) {
+			} else if (new Date(carpool.departureTime) < new Date()) {
 				result = false;
 			}
 

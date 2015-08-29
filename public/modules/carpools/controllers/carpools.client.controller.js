@@ -31,16 +31,8 @@ angular.module('carpools').controller('CarpoolsController',[
 							lng: place.geometry.location.K
 						}
 					};
-
-					model.$setViewValue(document.getElementById('destination').val());
 				});
-
-				$scope.setDestination($scope.placeSearch)
 			});
-		};
-
-		$scope.setDestination = function(placeSearch) {
-			this.placeSearch = placeSearch;
 		};
 
 		$scope.canShowDrive = function() {

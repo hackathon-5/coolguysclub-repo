@@ -8,18 +8,20 @@
             <input type="text" class="form-control" placeholder="Where do you wanna go?"
                    ng-model="search.destination"/>
         </form>
-        <button type="button" class="btn" ng-click="registerRide()">Drive</button>
-        <button type="button" class="btn" ng-click="search()">Ride</button>
+        <div>
+            <button type="button" class="btn" ng-click="registerRide()">Drive</button>
+            <button type="button" class="btn" ng-click="search()">Ride</button>
+        </div>
+
     </div>
 
-
-
     <div class="list-group">
-        <a data-ng-repeat="carpool in carpools | filter:search:strict" class="list-group-item" ng-click="carpool.showDetail=!carpool.showDetail">
+        <a data-ng-repeat="carpool in carpools | filter:search:strict" class="list-group-item"
+           ng-click="carpool.showDetail=!carpool.showDetail" ng-if="carpool.numSeats - carpool.riders.length > 0">
             <div class="row">
                 <div class="col-sm-4 carpool-destination">{{carpool.destination}}</div>
                 <div class="text-center col-sm-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}}</div>
-                <div class="text-center col-sm-4 carpool-numSeats">{{carpool.numSeats}}</div>
+                <div class="text-center col-sm-4 carpool-numSeats">{{carpool.numSeats - carpool.riders.length}}</div>
             </div>
             <small class="list-group-item-text">
                 Posted on

@@ -1,11 +1,37 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="findOne()">
   <div class="page-header">
-    <h1 data-ng-bind="carpool.destination"></h1>
+    <h1>
+        {{carpool.destination}}
+        <small>leaving at: {{carpool.departureTime | date:'h:mm a'}}</small>
+    </h1>
   </div>
+
+  <div>
+      <h3>
+          {{carpool.user.displayName}} is the driver. <br/>
+          <small>({{carpool.user.email}})</small>
+      </h3>
+  </div>
+
+  <div>
+      <h3>
+          Here are the riders...
+      </h3>
+      <ul>
+          <li ng-repeat="rider in carpool.riders" ng-class="{bold: isRider(rider)}">
+              {{rider.displayName}} &nbsp;-&nbsp; <span class="text-muted rider-email">{{rider.email}}</span>
+          </li>
+      </ul>
+
+  </div>
+
+
+
+  <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id != carpool.user._id))">
+    <button type="button" class="btn btn-warning" ng-click="unjoinCarpool(carpool)">Unjoin?!</button>
+  </div>
+
   <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == carpool.user._id))">
-    <a class="btn btn-primary" href="/#!/carpools/{{carpool._id}}/edit">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
     <a class="btn btn-primary" data-ng-click="remove();">
       <i class="glyphicon glyphicon-trash"></i>
     </a>

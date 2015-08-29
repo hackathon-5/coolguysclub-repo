@@ -6,6 +6,10 @@ angular.module('carpools').controller('CarpoolsController',[
 	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
 		$scope.authentication = Authentication;
 
+		if(!$scope.authentication.user) {
+			$location.path('/signin');
+		}
+
 		$scope.registerRide = function () {
 			var modalInstance = $modal.open({
 				animation: true,
@@ -23,22 +27,37 @@ angular.module('carpools').controller('CarpoolsController',[
 		};
 
 		$scope.joinCarpool = function(carpool) {
-			//console.log($scope.authentication.user);
-
 			carpool.riders.push($scope.authentication.user._id);
 
 			carpool.$update(function(response) {
-				console.log(response);
-
 				$location.path('carpools/' + carpool._id);
-
 			}, function(errorResponse) {
 				carpool.riders.pop();
-
 				$scope.error = errorResponse.data.message;
 			});
 
 		};
+
+		$scope.unjoinCarpool = function(carpool) {
+			var rider;
+			for (var i in carpool.riders) {
+				if (carpool.riders[i]._id === $scope.authentication.user._id) {
+					rider = carpool.riders[i];
+					carpool.riders.splice(i, 1);
+				}
+			}
+
+			carpool.$update(function() {
+				$location.path('/');
+			}, function(errorResponse) {
+				if(rider) {
+					carpool.riders.push(rider);
+				}
+				$scope.error = errorResponse.data.message;
+			});
+
+		};
+
 
 		// Create new Carpool
 		$scope.create = function() {
@@ -143,5 +162,9 @@ angular.module('carpools').controller('CarpoolsController',[
 
 			return riders;
 		};
+
+		$scope.isRider = function(rider) {
+			return rider._id === $scope.authentication.user._id;
+		}
 	}
 ]);

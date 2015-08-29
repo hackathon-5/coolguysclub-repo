@@ -86,8 +86,8 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) { 
 	Carpool.find({
 	}).sort('departureTime')
-		.populate('user', 'displayName')
-		.populate('riders', 'displayName')
+		.populate('user')
+		.populate('riders')
 		.exec(function(err, carpools) {
 		if (err) {
 			return res.status(400).send({
@@ -115,7 +115,7 @@ exports.list = function(req, res) {
  */
 exports.carpoolByID = function(req, res, next, id) { 
 	Carpool.findById(id)
-		.populate('user', 'displayName')
+		.populate('user')
 		.populate('riders')
 		.exec(function(err, carpool) {
 		if (err) return next(err);

@@ -2,8 +2,8 @@
 
 // Carpools controller
 angular.module('carpools').controller('CarpoolsController',[
-	'$scope', '$stateParams', '$location', '$modal', '$log', 'Authentication', 'Carpools', '$rootScope',
-	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools, $rootScope) {
+	'$scope', '$stateParams', '$location', '$modal', '$log', 'Authentication', 'Carpools',
+	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
 		$scope.authentication = Authentication;
 
 		$scope.pageView = 'LIST';

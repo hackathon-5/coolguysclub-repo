@@ -57,18 +57,5 @@ angular.module('carpools').controller('MapsController',[
                 });
             }
         };
-
-        var joinCarpool = function(carpool) {
-            carpool.riders.push($scope.authentication.user._id);
-
-            carpool.$update(function(response) {
-                $location.path('carpools/' + carpool._id);
-            }, function(errorResponse) {
-                carpool.riders.pop();
-                $scope.error = errorResponse.data.message;
-            });
-
-        };
-
     }
 ]);

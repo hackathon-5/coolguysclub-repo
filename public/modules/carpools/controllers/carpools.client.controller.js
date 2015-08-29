@@ -6,11 +6,17 @@ angular.module('carpools').controller('CarpoolsController',[
 	function($scope, $stateParams, $location, $modal, $log, Authentication, Carpools) {
 		$scope.authentication = Authentication;
 
+		$scope.pageView = 'HOME';
+
 		if(!$scope.authentication.user) {
 			$location.path('/signin');
 		}
 
-		$scope.registerRide = function () {
+		$scope.ride = function() {
+			$scope.pageView = 'LIST';
+		};
+
+		$scope.drive = function () {
 			var modalInstance = $modal.open({
 				animation: true,
 				templateUrl: 'modules/carpools/views/register-ride.client.view.html',
@@ -165,6 +171,6 @@ angular.module('carpools').controller('CarpoolsController',[
 
 		$scope.isRider = function(rider) {
 			return rider._id === $scope.authentication.user._id;
-		}
+		};
 	}
 ]);

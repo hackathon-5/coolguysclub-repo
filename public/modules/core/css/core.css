@@ -17,3 +17,18 @@
 .bold {
 	font-weight: bold;
 }
+
+#map {
+	height: 400px;
+	margin: 20px 0;
+	border-radius: 5px;
+	border: 1px solid silver;
+}
+
+.right {
+	float: right;
+}
+
+.row {
+	margin: 1em;
+}

@@ -1,28 +1,48 @@
 <section data-ng-controller="CarpoolsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Carpools</h1>
+        <h1>
+            Carpools
+            <button class="right btn" type="button" class="btn"
+                    ng-if="pageView !== 'HOME'"
+                    ng-click="drive()">Drive</button>
+        </h1>
     </div>
 
-    <div>
-        <form ng-submit="search()">
+    <div class="row text-center">
+        <div class="btn-group btn-group-xs text-center">
+            <button type="button" class="btn btn-default"
+                    ng-click="pageView = 'LIST'">list</button>
+            <button type="button" class="btn btn-default"
+                    ng-click="pageView = 'MAP'">map</button>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <form>
             <input type="text" class="form-control" placeholder="Where do you wanna go?"
                    ng-model="search.destination"/>
         </form>
+    </div>
+
+    <div ng-if="pageView === 'HOME'" class="row text-center">
         <div>
-            <button type="button" class="btn" ng-click="registerRide()">Drive</button>
-            <button type="button" class="btn" ng-click="search()">Ride</button>
+            <button type="button" class="btn" ng-click="drive()">Drive</button>
+            <button type="button" class="btn" ng-click="ride()">Ride</button>
         </div>
 
     </div>
 
-    <div class="list-group">
+    <div ng-if="pageView === 'LIST'" class="row list-group">
         <a data-ng-repeat="carpool in carpools | filter:search:strict" class="list-group-item"
            ng-click="carpool.showDetail=!carpool.showDetail" ng-if="carpool.numSeats - carpool.riders.length > 0">
+
             <div class="row">
                 <div class="col-sm-4 carpool-destination">{{carpool.destination}}</div>
                 <div class="text-center col-sm-4 carpool-departureTime">{{carpool.departureTime | date:'h:mm a'}}</div>
                 <div class="text-center col-sm-4 carpool-numSeats">{{carpool.numSeats - carpool.riders.length}}</div>
             </div>
+
             <small class="list-group-item-text">
                 Posted on
                 <span data-ng-bind="carpool.created | date:'medium'"></span>
@@ -30,18 +50,18 @@
                 <span data-ng-bind="carpool.user.displayName"></span>
             </small>
 
-
             <div ng-if="carpool.showDetail">
                 <div ng-if="carpool.riders.length > 0">Riders: {{getRiders(carpool)}}</div>
                 <div ng-if="carpool.riders.length === 0">No riders yet!</div>
                 <button type="button" class="btn btn-warning" ng-click="joinCarpool(carpool)">Join!</button>
             </div>
 
-
         </a>
     </div>
 
-
+    <div ng-if="pageView === 'MAP'" ng-controller="MapsController">
+        <div id="map"></div>
+    </div>
 
     <div class="alert alert-warning text-center" data-ng-hide="!carpools.$resolved || carpools.length">
     	No Carpools yet, why don't you <a href="/#!/carpools/create">create one</a>?
